@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TestViewPager</string>
+
+    <string name="first_title">First fragment</string>
+    <string name="second_title">Second fragment</string>
+    <string name="third_title">Third fragment</string>
+</resources>
