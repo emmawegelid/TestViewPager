@@ -13,8 +13,6 @@ import se.testviewpager.R;
 
 public class ProfileFragment extends Fragment {
 
-    public static final String TAG = ProfileFragment.class.getSimpleName();
-
     private OnInteractionListener listener;
 
     @Override

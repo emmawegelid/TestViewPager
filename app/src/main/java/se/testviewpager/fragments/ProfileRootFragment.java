@@ -20,7 +20,7 @@ public class ProfileRootFragment extends Fragment implements OnBackPressedListen
 
         getChildFragmentManager()
                 .beginTransaction()
-                .replace(R.id.profile_root_frame, new ProfileFragment(), ProfileFragment.TAG)
+                .replace(R.id.profile_root_frame, new ProfileFragment())
                 .commit();
 
         return view;
@@ -28,7 +28,7 @@ public class ProfileRootFragment extends Fragment implements OnBackPressedListen
 
     @Override
     public boolean onBackPressed() {
-        boolean result = new BackPressImpl(this, ProfileFragment.TAG, R.id.profile_root_frame).onBackPressed();
+        boolean result = new BackPressImpl(this).onBackPressed();
         Timber.d("onBackPressed: " + result);
         return result;
     }

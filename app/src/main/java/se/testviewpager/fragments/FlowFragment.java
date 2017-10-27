@@ -13,8 +13,6 @@ import se.testviewpager.R;
 
 public class FlowFragment extends Fragment {
 
-    public static final String TAG = FlowFragment.class.getSimpleName();
-
     private OnInteractionListener listener;
 
     @Override

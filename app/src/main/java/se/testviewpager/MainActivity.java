@@ -22,10 +22,12 @@ public class MainActivity extends AppCompatActivity implements OnInteractionList
         setContentView(R.layout.activity_main);
 
         ViewPager viewPager = findViewById(R.id.viewpager);
-        this.viewPager = viewPager;
         SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getFragmentManager());
-        this.adapter = adapter;
+
         viewPager.setAdapter(adapter);
+
+        this.viewPager = viewPager;
+        this.adapter = adapter;
 
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
