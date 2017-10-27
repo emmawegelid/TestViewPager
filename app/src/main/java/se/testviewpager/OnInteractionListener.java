@@ -1,5 +1,7 @@
 package se.testviewpager;
 
+import android.app.FragmentManager;
+
 /**
  * Horseflow
  * Created by Emma Wegelid on 2017-10-25.
@@ -8,6 +10,6 @@ package se.testviewpager;
  */
 public interface OnInteractionListener {
 
-    void openSearch();
-    void openSettings();
+    void openSearch(FragmentManager fragmentManager);
+    void openSettings(FragmentManager fragmentManager);
 }
