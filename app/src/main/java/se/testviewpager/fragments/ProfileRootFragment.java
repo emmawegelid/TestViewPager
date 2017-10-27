@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import se.testviewpager.OnBackPressedListener;
 import se.testviewpager.R;
+import timber.log.Timber;
 
 public class ProfileRootFragment extends Fragment implements OnBackPressedListener {
 
@@ -17,7 +18,7 @@ public class ProfileRootFragment extends Fragment implements OnBackPressedListen
 
         View view = inflater.inflate(R.layout.fragment_profile_root, container, false);
 
-        getFragmentManager()
+        getChildFragmentManager()
                 .beginTransaction()
                 .replace(R.id.profile_root_frame, new ProfileFragment(), ProfileFragment.TAG)
                 .commit();
@@ -27,6 +28,8 @@ public class ProfileRootFragment extends Fragment implements OnBackPressedListen
 
     @Override
     public boolean onBackPressed() {
-        return new BackPressImpl(this, ProfileFragment.TAG, R.id.profile_root_frame).onBackPressed();
+        boolean result = new BackPressImpl(this, ProfileFragment.TAG, R.id.profile_root_frame).onBackPressed();
+        Timber.d("onBackPressed: " + result);
+        return result;
     }
 }
