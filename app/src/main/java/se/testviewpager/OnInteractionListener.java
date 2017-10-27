@@ -9,4 +9,5 @@ package se.testviewpager;
 public interface OnInteractionListener {
 
     void openSearch();
+    void openSettings();
 }

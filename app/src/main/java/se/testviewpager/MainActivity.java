@@ -1,14 +1,19 @@
 package se.testviewpager;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import se.testviewpager.fragments.SearchFragment;
+import se.testviewpager.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity implements OnInteractionListener {
+
+    private ViewPager viewPager;
+    private SimpleFragmentPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +21,9 @@ public class MainActivity extends AppCompatActivity implements OnInteractionList
         setContentView(R.layout.activity_main);
 
         ViewPager viewPager = findViewById(R.id.viewpager);
+        this.viewPager = viewPager;
         SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getFragmentManager());
+        this.adapter = adapter;
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
@@ -25,18 +32,28 @@ public class MainActivity extends AppCompatActivity implements OnInteractionList
 
     @Override
     public void openSearch() {
-        initFragment(new SearchFragment());
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.flow_root_frame, new SearchFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null).commit();
     }
 
-    private void initFragment(Fragment fragment) {
-        getFragmentManager().beginTransaction()
-                .add(R.id.viewpager, fragment)
-                .addToBackStack(null)
-                .commit();
-        getFragmentManager().executePendingTransactions();
+    @Override
+    public void openSettings() {
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.profile_root_frame, new SettingsFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null).commit();
     }
 
-    protected boolean canNavigateBack() {
-        return getFragmentManager().getBackStackEntryCount() > 0;
+    @Override
+    public void onBackPressed() {
+        OnBackPressedListener currentFragment = (OnBackPressedListener) adapter.getRegisteredFragment(viewPager.getCurrentItem());
+
+        if (currentFragment == null || !currentFragment.onBackPressed()) {
+            super.onBackPressed();
+        }
     }
 }

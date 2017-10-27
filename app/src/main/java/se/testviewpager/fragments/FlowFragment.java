@@ -11,16 +11,18 @@ import android.widget.Button;
 import se.testviewpager.OnInteractionListener;
 import se.testviewpager.R;
 
-public class FirstFragment extends Fragment {
+public class FlowFragment extends Fragment {
+
+    public static final String TAG = FlowFragment.class.getSimpleName();
 
     private OnInteractionListener listener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_first, container, false);
+        View view = inflater.inflate(R.layout.fragment_flow, container, false);
 
-        Button button = view.findViewById(R.id.openPage);
+        Button button = view.findViewById(R.id.openSearchButton);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
