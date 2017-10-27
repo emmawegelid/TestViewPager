@@ -27,7 +27,7 @@ public class ProfileFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.openSettings();
+                listener.openSettings(getFragmentManager());
             }
         });
 
