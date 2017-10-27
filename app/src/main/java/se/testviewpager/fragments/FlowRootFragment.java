@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import se.testviewpager.OnBackPressedListener;
 import se.testviewpager.R;
+import timber.log.Timber;
 
 public class FlowRootFragment extends Fragment implements OnBackPressedListener {
 
@@ -27,6 +28,8 @@ public class FlowRootFragment extends Fragment implements OnBackPressedListener 
 
     @Override
     public boolean onBackPressed() {
-        return new BackPressImpl(this, FlowFragment.TAG, R.id.flow_root_frame).onBackPressed();
+        boolean result = new BackPressImpl(this, FlowFragment.TAG, R.id.flow_root_frame).onBackPressed();
+        Timber.d("onBackPressed: " + result);
+        return result;
     }
 }
