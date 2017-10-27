@@ -1,14 +1,15 @@
 package se.testviewpager;
 
-import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import se.testviewpager.fragments.SearchFragment;
 import se.testviewpager.fragments.SettingsFragment;
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements OnInteractionListener {
 
@@ -31,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements OnInteractionList
     }
 
     @Override
-    public void openSearch() {
-        getFragmentManager()
+    public void openSearch(FragmentManager fragmentManager) {
+        fragmentManager
                 .beginTransaction()
                 .replace(R.id.flow_root_frame, new SearchFragment())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -40,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements OnInteractionList
     }
 
     @Override
-    public void openSettings() {
-        getFragmentManager()
+    public void openSettings(FragmentManager fragmentManager) {
+        fragmentManager
                 .beginTransaction()
                 .replace(R.id.profile_root_frame, new SettingsFragment())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements OnInteractionList
         OnBackPressedListener currentFragment = (OnBackPressedListener) adapter.getRegisteredFragment(viewPager.getCurrentItem());
 
         if (currentFragment == null || !currentFragment.onBackPressed()) {
+            Timber.d("onBackPressed by Activity");
             super.onBackPressed();
         }
     }
