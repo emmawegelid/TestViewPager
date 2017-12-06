@@ -10,7 +10,7 @@ import se.testviewpager.OnBackPressedListener;
 import se.testviewpager.R;
 import timber.log.Timber;
 
-public class FlowRootFragment extends Fragment implements OnBackPressedListener {
+public class FlowRootFragment extends BaseRootFragment implements OnBackPressedListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -21,7 +21,7 @@ public class FlowRootFragment extends Fragment implements OnBackPressedListener 
         getChildFragmentManager()
                 .beginTransaction()
                 .replace(R.id.flow_root_frame, new FlowFragment(), FlowFragment.TAG)
-                .commit();
+                .commitAllowingStateLoss();
 
         return view;
     }
