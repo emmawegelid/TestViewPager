@@ -3,4 +3,7 @@
 
     <string name="flow_title">Flow fragment</string>
     <string name="profile_title">Profile fragment</string>
+	<string name="search_title">Search</string>
+	<string name="settings_title">Settings</string>
+	<string name="cake_title">Cake</string>
 </resources>
