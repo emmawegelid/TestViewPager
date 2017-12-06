@@ -17,8 +17,6 @@ import timber.log.Timber;
 
 public class ProfileFragment extends BaseNestedFragment {
 
-    public static final String TAG = ProfileFragment.class.getSimpleName();
-
     private OnInteractionListener listener;
 
     @Override

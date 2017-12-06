@@ -20,7 +20,7 @@ public class FlowRootFragment extends BaseRootFragment implements OnBackPressedL
 
         getChildFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flow_root_frame, new FlowFragment(), FlowFragment.TAG)
+                .replace(R.id.flow_root_frame, new FlowFragment())
                 .commitAllowingStateLoss();
 
         return view;
@@ -28,7 +28,7 @@ public class FlowRootFragment extends BaseRootFragment implements OnBackPressedL
 
     @Override
     public boolean onBackPressed() {
-        boolean result = new BackPressImpl(this, FlowFragment.TAG, R.id.flow_root_frame).onBackPressed();
+        boolean result = new BackPressImpl(this).onBackPressed();
         Timber.d("onBackPressed: " + result);
         return result;
     }
