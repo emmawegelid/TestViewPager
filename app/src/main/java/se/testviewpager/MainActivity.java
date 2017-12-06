@@ -20,15 +20,8 @@ public class MainActivity extends AppCompatActivity implements OnInteractionList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ViewPager viewPager = findViewById(R.id.viewpager);
-        this.viewPager = viewPager;
-        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getFragmentManager());
-        this.adapter = adapter;
-        viewPager.setAdapter(adapter);
-
-        TabLayout tabLayout = findViewById(R.id.sliding_tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        initTimber();
+        initViewPager();
     }
 
     @Override
@@ -57,5 +50,29 @@ public class MainActivity extends AppCompatActivity implements OnInteractionList
             Timber.d("onBackPressed by Activity");
             super.onBackPressed();
         }
+    }
+
+    private void initTimber() {
+        Timber.plant(new Timber.DebugTree());
+    }
+
+
+    private void initViewPager() {
+        Timber.d("initViewPager");
+        ViewPager viewPager = findViewById(R.id.viewpager);
+        this.viewPager = viewPager;
+        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getFragmentManager());
+        this.adapter = adapter;
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                invalidateOptionsMenu();
+            }
+        });
     }
 }
